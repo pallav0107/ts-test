@@ -1,10 +1,11 @@
 const urlPrefix = `http://www.smokeballdev.com`;
 
-const urlToResponseLookup = {
+const urlToResponseLookup: Record<string, string> = {
   [`${urlPrefix}/arnie0`]: 'Get to the chopper',
   [`${urlPrefix}/arnie1`]: 'MY NAME IS NOT QUAID',
   [`${urlPrefix}/arnie2`]: `What's wrong with Wolfie?`,
 };
+
 
 const httpRequestMockP = (url : string) => new Promise((resolve, reject) => {
   setTimeout(() => {
@@ -22,7 +23,7 @@ export const httpGet = async (url : string) => {
     const message = await httpRequestMockP(url);
     return { status: 200, body: JSON.stringify({ message }) };
   } 
-  catch (err) {
+  catch (err: any) {
     return { status: 500, body: JSON.stringify({ message: err.message }) };
   }
 };
